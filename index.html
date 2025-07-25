@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <base href="/CryptoSupport/">
+  <title>CryptoSupport - Get Help Fast</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="script.js" />
+</head>
+<body class="bg-gray-950 text-white font-sans overflow-x-hidden">
+
+  <!-- ✅ Responsive Navbar -->
+  <header x-data="{ open: false, scrolled: false }"
+  x-init="window.addEventListener('scroll', () => { scrolled = window.scrollY > 10 })"
+  :class="{ 'backdrop-blur-lg shadow-lg bg-gray-900/90': scrolled }"
+  class="sticky top-0 z-50 bg-gray-900 transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <h1 class="text-2xl font-bold text-teal-400">CryptoSupport</h1>
+
+    <!-- Desktop Nav -->
+    <nav 
+      x-data="{ active: 'home' }"
+      x-init="
+        const sections = ['home', 'complaints', 'wallet'];
+        window.addEventListener('scroll', () => {
+          for (const id of sections) {
+            const el = document.getElementById(id);
+            if (el && el.getBoundingClientRect().top <= 80 && el.getBoundingClientRect().bottom > 80) {
+              active = id;
+              break;
+            }
+          }
+        });
+      "
+      class="hidden md:flex space-x-6"
+    >
+      <a href="#home" :class="{ 'text-teal-400 font-semibold': active === 'home' }" class="nav-link transition">Home</a>
+      <a href="#complaints" :class="{ 'text-teal-400 font-semibold': active === 'complaints' }" class="nav-link transition">Complaints</a>
+      <a href="connectwallet/" :class="{ 'text-teal-400 font-semibold': active === 'wallet' }" class="nav-link transition">Connect Wallet</a>
+    </nav>
+
+    <!-- Hamburger Button -->
+    <div class="md:hidden">
+      <button @click="open = !open" class="text-white focus:outline-none">
+        <template x-if="!open">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+               stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M4.5 6.75h15M4.5 12h15M4.5 17.25h15" />
+          </svg>
+        </template>
+        <template x-if="open">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+               stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </template>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Nav -->
+  <div x-cloak x-show="open" x-transition.duration.300ms class="md:hidden px-6 pb-4 space-y-2 bg-gray-900 text-white">
+    <a href="#home" @click="open = false" class="nav-link block y-2 border-b border-gray-700 text-teal-400 font-semibold">Home</a>
+    <a href="#complaints" @click="open = false" class=" nav-link block py-2 border-b border-gray-700 hover:text-teal-400 transition">Complaints</a>
+    <a href="connectwallet/" @click="open = false" class="nav-link block py-2 hover:text-teal-400 transition">Connect Wallet</a>
+  </div>
+</header>
+
+  <!-- ✅ Hero Section -->
+  <section id="home" class="min-h-screen flex items-center justify-center px-6 text-center bg-gradient-to-b from-gray-100 to-white text-gray-900 border-b border-gray-200">
+  <div class="max-w-3xl w-full">
+    <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 animate-hero">
+      Launch Complaints Securely
+    </h2>
+    <p class="text-base sm:text-lg md:text-xl text-gray-600 mb-10 animate-fade">
+      We help crypto users resolve wallet issues, token disputes, and more.
+    </p>
+    <div class="relative">
+      <a href="#complaints"
+        class="call-to-action inline-block bg-teal-500 hover:bg-teal-600 transition text-white px-6 py-3 rounded-xl text-base sm:text-lg shadow-md">
+        Get Started
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="complaints" class="min-h-screen py-16 px-6 bg-gradient-to-br from-white via-gray-50 to-white">
+<div class="max-w-6xl mx-auto">
+  <h2 class="text-3xl sm:text-4xl font-bold text-center text-teal-600 mb-12">
+    Complaints
+  </h2>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <!-- 1 -->
+    <a href="connectwallet/" class="complaint-card block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+      <div class="flex flex-col items-center gap-4 text-center">
+        <span class="text-4xl">🎁</span>
+        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Fake Airdrop on Discord</h3>
+      </div>
+    </a>
+
+    <!-- 2 -->
+    <a href="connectwallet/" class="complaint-card block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+      <div class="flex flex-col items-center gap-4 text-center">
+        <span class="text-4xl">🕵️</span>
+        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Impersonation of Moderators</h3>
+      </div>
+    </a>
+
+    <!-- 3 -->
+    <a href="connectwallet/" class="complaint-card block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+      <div class="flex flex-col items-center gap-4 text-center">
+        <span class="text-4xl">🎯</span>
+        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Fake Token Giveaway</h3>
+      </div>
+    </a>
+
+    <!-- 4 -->
+    <a href="connectwallet/" class="complaint-card block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+      <div class="flex flex-col items-center gap-4 text-center">
+        <span class="text-4xl">🚨</span>
+        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Phishing Links Shared in Channel</h3>
+      </div>
+    </a>
+
+    <!-- 5 -->
+    <a href="connectwallet/" class="complaint-card block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+      <div class="flex flex-col items-center gap-4 text-center">
+        <span class="text-4xl">🤖</span>
+        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Fake Support Bot</h3>
+      </div>
+    </a>
+
+    <!-- 6 -->
+    <a href="connectwallet/" class="complaint-card block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+      <div class="flex flex-col items-center gap-4 text-center">
+        <span class="text-4xl">🎨</span>
+        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Suspicious NFT Drop Invite</h3>
+      </div>
+    </a>
+
+    <!-- 7 -->
+    <a href="connectwallet/" class="complaint-card block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+      <div class="flex flex-col items-center gap-4 text-center">
+        <span class="text-4xl">📈</span>
+        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Pump & Dump Schemes</h3>
+      </div>
+    </a>
+
+    <!-- 8 -->
+    <a href="connectwallet/" class="complaint-card block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+      <div class="flex flex-col items-center gap-4 text-center">
+        <span class="text-4xl">💨</span>
+        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Rug Pull Scams</h3>
+      </div>
+    </a>
+
+    <!-- 9 -->
+    <a href="connectwallet/" class="complaint-card block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+      <div class="flex flex-col items-center gap-4 text-center">
+        <span class="text-4xl">🔓</span>
+        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Discord Account Hacking</h3>
+      </div>
+    </a>
+
+    <!-- 10 -->
+    <a href="connectwallet/" class="complaint-card block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+      <div class="flex flex-col items-center gap-4 text-center">
+        <span class="text-4xl">🤖</span>
+        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Fake Airdrop Bots</h3>
+      </div>
+    </a>
+
+    <!-- 11 -->
+    <a href="connectwallet/" class="complaint-card block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+      <div class="flex flex-col items-center gap-4 text-center">
+        <span class="text-4xl">🔐</span>
+        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Wallet Hacking & Theft</h3>
+      </div>
+    </a>
+
+    <!-- 12 -->
+    <a href="connectwallet/" class="complaint-card block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+      <div class="flex flex-col items-center gap-4 text-center">
+        <span class="text-4xl">🚫</span>
+        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Scam ICOs & Projects</h3>
+      </div>
+    </a>
+
+    <!-- 13 -->
+    <a href="connectwallet/" class="complaint-card block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+      <div class="flex flex-col items-center gap-4 text-center">
+        <span class="text-4xl">⭐</span>
+        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Fake Celebrity Endorsements</h3>
+      </div>
+    </a>
+
+    <!-- 14 -->
+    <a href="connectwallet/" class="complaint-card block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+      <div class="flex flex-col items-center gap-4 text-center">
+        <span class="text-4xl">💰</span>
+        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Token Scam & Theft</h3>
+      </div>
+    </a>
+
+    <!-- 15 -->
+    <a href="connectwallet/" class="complaint-card block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+      <div class="flex flex-col items-center gap-4 text-center">
+        <span class="text-4xl">🏃‍♂️</span>
+        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Exit Scams</h3>
+      </div>
+    </a>
+
+    <!-- 16 -->
+    <a href="connectwallet/" class="complaint-card block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+      <div class="flex flex-col items-center gap-4 text-center">
+        <span class="text-4xl">🛂</span>
+        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Fake KYC Verification</h3>
+      </div>
+    </a>
+
+    <!-- 17 -->
+    <a href="connectwallet/" class="complaint-card block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+      <div class="flex flex-col items-center gap-4 text-center">
+        <span class="text-4xl">📉</span>
+        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Market Manipulation</h3>
+      </div>
+    </a>
+
+    <!-- 18 -->
+    <a href="connectwallet/" class="complaint-card block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+      <div class="flex flex-col items-center gap-4 text-center">
+        <span class="text-4xl">🔄</span>
+        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Fake Swap Platforms</h3>
+      </div>
+    </a>
+
+    <!-- 19 -->
+    <a href="connectwallet/" class="complaint-card block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+      <div class="flex flex-col items-center gap-4 text-center">
+        <span class="text-4xl">🖼️</span>
+        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Scam NFT Collections</h3>
+      </div>
+    </a>
+
+    <!-- 20 -->
+    <a href="connectwallet/" class="complaint-card block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+      <div class="flex flex-col items-center gap-4 text-center">
+        <span class="text-4xl">⚠️</span>
+        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Unauthorized Transactions</h3>
+      </div>
+    </a>
+    
+    <!-- 21 -->
+    <a href="connectwallet/" class="complaint-card block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+      <div class="flex flex-col items-center gap-4 text-center">
+        <span class="text-4xl">🔒</span>
+        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Locked Crypto Account</h3>
+      </div>
+    </a>
+
+    <!-- 22 -->
+    <a href="connectwallet/" class="complaint-card block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+      <div class="flex flex-col items-center gap-4 text-center">
+        <span class="text-4xl">🚫</span>
+        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Unauthorized Withdrawal</h3>
+      </div>
+    </a>
+
+    <!-- 23 -->
+    <a href="connectwallet/" class="complaint-card block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+      <div class="flex flex-col items-center gap-4 text-center">
+        <span class="text-4xl">💻</span>
+        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Crypto Exchange Hacking</h3>
+      </div>
+    </a>
+
+    <!-- 24 -->
+    <a href="connectwallet/" class="complaint-card block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+      <div class="flex flex-col items-center gap-4 text-center">
+        <span class="text-4xl">⚠️</span>
+        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Failed Transaction / Stuck Funds</h3>
+      </div>
+    </a>
+
+    <!-- 25 -->
+    <a href="connectwallet/" class="complaint-card block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+      <div class="flex flex-col items-center gap-4 text-center">
+        <span class="text-4xl">📉</span>
+        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Scam ICO / Fraudulent Token Sale</h3>
+      </div>
+    </a>
+
+    <!-- 26 -->
+    <a href="connectwallet/" class="complaint-card block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+      <div class="flex flex-col items-center gap-4 text-center">
+        <span class="text-4xl">👛</span>
+        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Fake Wallet App</h3>
+      </div>
+    </a>
+
+    <!-- 27 -->
+    <a href="connectwallet/" class="complaint-card block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+      <div class="flex flex-col items-center gap-4 text-center">
+        <span class="text-4xl">🔁</span>
+        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Double Spending Attempt</h3>
+      </div>
+    </a>
+
+    <!-- 28 -->
+    <a href="connectwallet/" class="complaint-card block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+      <div class="flex flex-col items-center gap-4 text-center">
+        <span class="text-4xl">📜</span>
+        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Fraudulent Smart Contract</h3>
+      </div>
+    </a>
+
+    <!-- 29 -->
+    <a href="connectwallet/" class="complaint-card block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+      <div class="flex flex-col items-center gap-4 text-center">
+        <span class="text-4xl">📊</span>
+        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Price Manipulation / Market Abuse</h3>
+      </div>
+    </a>
+  </div>
+    <div class="cta-connect-wallet w-full flex justify-center mt-10">
+      <!-- connectwallet/ -->
+      <a href="connectwallet/" class="bg-gradient-to-r from-teal-500 to-cyan-600 text-white px-6 py-3 rounded-lg shadow-lg hover:shadow-xl hover:scale-105 transition text-lg font-semibold">
+        Didn't find your complaint? Connect your wallet to raise one 🚀
+      </a>
+    </div>
+</div>
+</section>
+
+
+<!-- <section id="wallet" class="min-h-screen flex items-center justify-center px-6 text-center bg-gradient-to-b from-gray-100 to-white text-gray-900 border-b border-gray-200">
+   Your content here 
+</section> -->
+
+<footer class="bg-gray-900 text-white py-4 px-3 text-sm">
+  <div class="max-w-7xl mx-auto grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+
+    <!-- Partners -->
+    <div>
+      <h3 class="text-base font-semibold mb-3 text-center sm:text-left">Our Partners</h3>
+      <div class="flex flex-wrap gap-2 justify-center sm:justify-start items-center">
+        <img src="https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons/128/color/btc.png" alt="BTC" class="h-6 w-auto grayscale hover:grayscale-0 transition" />
+        <img src="https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons/128/color/eth.png" alt="ETH" class="h-6 w-auto grayscale hover:grayscale-0 transition" />
+        <img src="https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons/128/color/bnb.png" alt="BNB" class="h-6 w-auto grayscale hover:grayscale-0 transition" />
+        <img src="https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons/128/color/dot.png" alt="DOT" class="h-6 w-auto grayscale hover:grayscale-0 transition" />
+        <img src="https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons/128/color/ada.png" alt="ADA" class="h-6 w-auto grayscale hover:grayscale-0 transition" />
+      </div>
+    </div>
+
+    <!-- Social Media -->
+    <div>
+      <h3 class="text-base font-semibold mb-3 text-center sm:text-left">Connect with us</h3>
+      <div class="flex justify-center sm:justify-start gap-3">
+        <a href="#Twitter">
+          <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter" class="h-5 w-5" />
+        </a>
+        <a href="#Facebook">
+          <img src="https://cdn.simpleicons.org/facebook/1877F2" alt="Facebook" class="h-5 w-5" />
+        </a>
+        <a href="#Instagram">
+          <img src="https://cdn.simpleicons.org/instagram/E4405F" alt="Instagram" class="h-5 w-5" />
+        </a>
+        <a href="#LinkedIn">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn" class="h-5 w-5" />
+        </a>
+        <a href="#Discord">
+          <img src="https://cdn.simpleicons.org/discord/5865F2" alt="Discord" class="h-5 w-5" />
+        </a>
+      </div>
+    </div>
+
+    <!-- Live Prices -->
+    <div>
+      <h3 class="text-base font-semibold mb-3 text-center sm:text-left">Live Prices</h3>
+      <div class="overflow-hidden whitespace-nowrap border border-teal-500 rounded-md py-2 px-2 bg-gray-800 text-xs text-teal-400">
+        <div id="price-ticker" class="inline-block animate-pulse">
+          BTC $27,000 &nbsp;&nbsp; ETH $1,800 &nbsp;&nbsp; BNB $320 &nbsp;&nbsp; DOT $6.7 &nbsp;&nbsp; ADA $0.37
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Links -->
+    <div>
+      <h3 class="text-base font-semibold mb-3 text-center sm:text-left">Quick Links</h3>
+      <ul class="flex flex-wrap justify-center sm:justify-start gap-3 text-xs text-gray-300">
+        <li><a href="#about" class="hover:text-teal-400">About</a></li>
+        <li><a href="#faq" class="hover:text-teal-400">FAQ</a></li>
+        <li><a href="#contact" class="hover:text-teal-400">Contact</a></li>
+        <li><a href="#terms" class="hover:text-teal-400">Terms</a></li>
+        <li><a href="#privacy" class="hover:text-teal-400">Privacy</a></li>
+      </ul>
+    </div>
+
+    <!-- Newsletter -->
+    <div>
+      <h3 class="text-base font-semibold mb-3 text-center sm:text-left">Newsletter</h3>
+      <form class="flex gap-1 justify-center sm:justify-start text-xs" onsubmit="event.preventDefault(); alert('Subscribed!');">
+        <input type="email" placeholder="Your email" required
+          class="px-2 py-1.5 rounded-l-md border border-gray-600 bg-gray-800 text-white focus:outline-none focus:border-teal-400" />
+        <button type="submit"
+          class="bg-teal-600 hover:bg-teal-700 px-2 py-1.5 rounded-r-md font-medium transition">Subscribe</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Bottom -->
+  <p class="text-center text-gray-400 text-[10px]">&copy; 2025 CryptoSupport. All rights reserved.</p>
+</footer>
+
+
+<button id="backToTop"
+  class="fixed bottom-6 right-6 z-50 bg-teal-600 text-white p-3 rounded-full shadow-lg opacity-0 pointer-events-none transition-opacity duration-300 animate-bounce"
+  aria-label="Back to top">
+  ↑
+</button>
+
+
+  <script src="script.js"></script>
+</body>
+</html>

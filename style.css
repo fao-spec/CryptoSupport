@@ -1,0 +1,25 @@
+[x-cloak] { display: none !important; }
+
+html {
+    scroll-behavior: smooth;
+  }
+
+.bounce-hover {
+  transition: transform 0.3s ease;
+}
+.bounce-hover:hover {
+  transform: translateY(-5px) scale(1.05);
+}
+
+@keyframes fade-in {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+.animate-fade-in {
+    animation: fade-in 0.3s ease-out;
+}
+
+#backToTop.show {
+  opacity: 1;
+  pointer-events: auto;
+}
