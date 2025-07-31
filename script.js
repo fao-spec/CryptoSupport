@@ -67,22 +67,6 @@ gsap.registerPlugin(ScrollTrigger);
       });
     });
 
-    gsap.registerPlugin(ScrollTrigger);
-
-    gsap.utils.toArray(".complaint-card").forEach((card, i) => {
-    gsap.from(card, {
-      x: i % 2 === 0 ? -100 : 100,
-      opacity: 0,
-      duration: 0.6,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: card,
-        start: "top 85%",
-        toggleActions: "play none none reset", // play animation on enter, reset on leave
-      },
-    });
-  });
-
 const prices = [
     { symbol: 'BTC', price: '29,345' },
     { symbol: 'ETH', price: '1,840' },

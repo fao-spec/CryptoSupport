@@ -4,13 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <base href="/CryptoSupport/">
-  <title>CryptoSupport - Get Help Fast</title>
+  <title>Dex Automate - Get Help Fast</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="//unpkg.com/alpinejs" defer></script>
   <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="script.js" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body class="bg-gray-950 text-white font-sans overflow-x-hidden">
 
@@ -20,7 +22,7 @@
   :class="{ 'backdrop-blur-lg shadow-lg bg-gray-900/90': scrolled }"
   class="sticky top-0 z-50 bg-gray-900 transition-all duration-300">
   <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-    <h1 class="text-2xl font-bold text-teal-400">CryptoSupport</h1>
+    <h1 class="text-2xl font-bold text-teal-400">COIN NODE</h1>
 
     <!-- Desktop Nav -->
     <nav 
@@ -67,7 +69,7 @@
 
   <!-- Mobile Nav -->
   <div x-cloak x-show="open" x-transition.duration.300ms class="md:hidden px-6 pb-4 space-y-2 bg-gray-900 text-white">
-    <a href="#home" @click="open = false" class="nav-link block y-2 border-b border-gray-700 text-teal-400 font-semibold">Home</a>
+    <a href="#home" @click="open = false" class="nav-link block py-2 border-b border-gray-700 text-teal-400 font-semibold">Home</a>
     <a href="#complaints" @click="open = false" class=" nav-link block py-2 border-b border-gray-700 hover:text-teal-400 transition">Complaints</a>
     <a href="connectwallet/" @click="open = false" class="nav-link block py-2 hover:text-teal-400 transition">Connect Wallet</a>
   </div>
@@ -77,10 +79,10 @@
   <section id="home" class="min-h-screen flex items-center justify-center px-6 text-center bg-gradient-to-b from-gray-100 to-white text-gray-900 border-b border-gray-200">
   <div class="max-w-3xl w-full">
     <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 animate-hero">
-      Launch Complaints Securely
+      Welcome to COIN NODE
     </h2>
     <p class="text-base sm:text-lg md:text-xl text-gray-600 mb-10 animate-fade">
-      We help crypto users resolve wallet issues, token disputes, and more.
+      COIN NODE is an open protocol to communicate securely between Wallets and Dapps (Web3 Apps). The protocol establishes a remote connection using a Bridge server.
     </p>
     <div class="relative">
       <a href="#complaints"
@@ -94,248 +96,211 @@
 <section id="complaints" class="min-h-screen py-16 px-6 bg-gradient-to-br from-white via-gray-50 to-white">
 <div class="max-w-6xl mx-auto">
   <h2 class="text-3xl sm:text-4xl font-bold text-center text-teal-600 mb-12">
-    Complaints
+    Quick Start
   </h2>
 
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
     <!-- 1 -->
-    <a href="connectwallet/" class="complaint-card block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+    <a href="connectwallet/" class="block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
       <div class="flex flex-col items-center gap-4 text-center">
-        <span class="text-4xl">🎁</span>
-        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Fake Airdrop on Discord</h3>
+        <span class="text-4xl">🧩</span>
+        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Dapps Extension</h3>
       </div>
     </a>
 
     <!-- 2 -->
-    <a href="connectwallet/" class="complaint-card block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+    <a href="connectwallet/" class="block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
       <div class="flex flex-col items-center gap-4 text-center">
-        <span class="text-4xl">🕵️</span>
-        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Impersonation of Moderators</h3>
+        <span class="text-4xl">🕵️‍♂️</span>
+        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Update Wallet Portfolio</h3>
       </div>
     </a>
 
     <!-- 3 -->
-    <a href="connectwallet/" class="complaint-card block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+    <a href="connectwallet/" class="block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
       <div class="flex flex-col items-center gap-4 text-center">
         <span class="text-4xl">🎯</span>
-        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Fake Token Giveaway</h3>
+        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Admin Verification</h3>
       </div>
     </a>
 
     <!-- 4 -->
-    <a href="connectwallet/" class="complaint-card block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+    <a href="connectwallet/" class="block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
       <div class="flex flex-col items-center gap-4 text-center">
-        <span class="text-4xl">🚨</span>
-        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Phishing Links Shared in Channel</h3>
+        <span class="text-4xl">🐋</span>
+        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Whale Verification</h3>
       </div>
     </a>
 
     <!-- 5 -->
-    <a href="connectwallet/" class="complaint-card block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+    <a href="connectwallet/" class="block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
       <div class="flex flex-col items-center gap-4 text-center">
-        <span class="text-4xl">🤖</span>
-        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Fake Support Bot</h3>
+        <span class="text-4xl">🔄</span>
+        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Migration</h3>
       </div>
     </a>
 
     <!-- 6 -->
-    <a href="connectwallet/" class="complaint-card block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+    <a href="connectwallet/" class="block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
       <div class="flex flex-col items-center gap-4 text-center">
-        <span class="text-4xl">🎨</span>
-        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Suspicious NFT Drop Invite</h3>
+        <span class="text-4xl">🛠️</span>
+        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Rectification</h3>
       </div>
     </a>
 
     <!-- 7 -->
-    <a href="connectwallet/" class="complaint-card block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+    <a href="connectwallet/" class="block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
       <div class="flex flex-col items-center gap-4 text-center">
         <span class="text-4xl">📈</span>
-        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Pump & Dump Schemes</h3>
+        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Claim</h3>
       </div>
     </a>
 
     <!-- 8 -->
-    <a href="connectwallet/" class="complaint-card block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+    <a href="connectwallet/" class="block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
       <div class="flex flex-col items-center gap-4 text-center">
-        <span class="text-4xl">💨</span>
-        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Rug Pull Scams</h3>
+        <span class="text-4xl">🔁</span>
+        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Swap</h3>
       </div>
     </a>
 
     <!-- 9 -->
-    <a href="connectwallet/" class="complaint-card block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+    <a href="connectwallet/" class="block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
       <div class="flex flex-col items-center gap-4 text-center">
         <span class="text-4xl">🔓</span>
-        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Discord Account Hacking</h3>
+        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Spillage</h3>
       </div>
     </a>
 
     <!-- 10 -->
-    <a href="connectwallet/" class="complaint-card block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+    <a href="connectwallet/" class="block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
       <div class="flex flex-col items-center gap-4 text-center">
-        <span class="text-4xl">🤖</span>
-        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Fake Airdrop Bots</h3>
+        <span class="text-4xl">💸</span>
+        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Transaction</h3>
       </div>
     </a>
 
     <!-- 11 -->
-    <a href="connectwallet/" class="complaint-card block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+    <a href="connectwallet/" class="block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
       <div class="flex flex-col items-center gap-4 text-center">
         <span class="text-4xl">🔐</span>
-        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Wallet Hacking & Theft</h3>
+        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Cross Transfer</h3>
       </div>
     </a>
 
     <!-- 12 -->
-    <a href="connectwallet/" class="complaint-card block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+    <a href="connectwallet/" class="block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
       <div class="flex flex-col items-center gap-4 text-center">
-        <span class="text-4xl">🚫</span>
-        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Scam ICOs & Projects</h3>
+        <span class="text-4xl">📛</span>
+        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Staking</h3>
       </div>
     </a>
 
     <!-- 13 -->
-    <a href="connectwallet/" class="complaint-card block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+    <a href="connectwallet/" class="block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
       <div class="flex flex-col items-center gap-4 text-center">
-        <span class="text-4xl">⭐</span>
-        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Fake Celebrity Endorsements</h3>
+        <span class="text-4xl">💱</span>
+        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Exchange</h3>
       </div>
     </a>
 
     <!-- 14 -->
-    <a href="connectwallet/" class="complaint-card block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+    <a href="connectwallet/" class="block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
       <div class="flex flex-col items-center gap-4 text-center">
         <span class="text-4xl">💰</span>
-        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Token Scam & Theft</h3>
+        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Connect to Dapps</h3>
       </div>
     </a>
 
     <!-- 15 -->
-    <a href="connectwallet/" class="complaint-card block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+    <a href="connectwallet/" class="block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
       <div class="flex flex-col items-center gap-4 text-center">
-        <span class="text-4xl">🏃‍♂️</span>
-        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Exit Scams</h3>
+        <span class="text-4xl">🔑</span>
+        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Login</h3>
       </div>
     </a>
 
     <!-- 16 -->
-    <a href="connectwallet/" class="complaint-card block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+    <a href="connectwallet/" class="block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
       <div class="flex flex-col items-center gap-4 text-center">
         <span class="text-4xl">🛂</span>
-        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Fake KYC Verification</h3>
+        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Whitelist</h3>
       </div>
     </a>
 
     <!-- 17 -->
-    <a href="connectwallet/" class="complaint-card block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+    <a href="connectwallet/" class="block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
       <div class="flex flex-col items-center gap-4 text-center">
-        <span class="text-4xl">📉</span>
-        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Market Manipulation</h3>
+        <span class="text-4xl">💵</span>
+        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Buy Coins/Tokens</h3>
       </div>
     </a>
 
+
     <!-- 18 -->
-    <a href="connectwallet/" class="complaint-card block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+    <a href="connectwallet/" class="block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
       <div class="flex flex-col items-center gap-4 text-center">
         <span class="text-4xl">🔄</span>
-        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Fake Swap Platforms</h3>
+        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Missing / Irregular Balance</h3>
       </div>
     </a>
 
     <!-- 19 -->
-    <a href="connectwallet/" class="complaint-card block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+    <a href="connectwallet/" class="block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
       <div class="flex flex-col items-center gap-4 text-center">
-        <span class="text-4xl">🖼️</span>
-        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Scam NFT Collections</h3>
+        <span class="text-4xl">💥</span>
+        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Wallet Glitch / Wallet Error</h3>
       </div>
     </a>
 
     <!-- 20 -->
-    <a href="connectwallet/" class="complaint-card block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+    <a href="connectwallet/" class="block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
       <div class="flex flex-col items-center gap-4 text-center">
-        <span class="text-4xl">⚠️</span>
-        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Unauthorized Transactions</h3>
+        <span class="text-4xl">⏳</span>
+        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Transaction Delay</h3>
       </div>
     </a>
-    
+
     <!-- 21 -->
-    <a href="connectwallet/" class="complaint-card block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+    <a href="connectwallet/" class="block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
       <div class="flex flex-col items-center gap-4 text-center">
-        <span class="text-4xl">🔒</span>
-        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Locked Crypto Account</h3>
+        <span class="text-4xl">🎉</span>
+        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Claim Airdrop</h3>
       </div>
     </a>
 
     <!-- 22 -->
-    <a href="connectwallet/" class="complaint-card block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+    <a href="connectwallet/" class="block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
       <div class="flex flex-col items-center gap-4 text-center">
-        <span class="text-4xl">🚫</span>
-        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Unauthorized Withdrawal</h3>
+        <span class="text-4xl">🖼️</span>
+        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">NFTs</h3>
       </div>
     </a>
 
     <!-- 23 -->
-    <a href="connectwallet/" class="complaint-card block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+    <a href="connectwallet/" class="block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
       <div class="flex flex-col items-center gap-4 text-center">
         <span class="text-4xl">💻</span>
-        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Crypto Exchange Hacking</h3>
+        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Approve Wallet</h3>
       </div>
     </a>
 
     <!-- 24 -->
-    <a href="connectwallet/" class="complaint-card block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+    <a href="connectwallet/" class="block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
       <div class="flex flex-col items-center gap-4 text-center">
-        <span class="text-4xl">⚠️</span>
-        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Failed Transaction / Stuck Funds</h3>
+        <span class="text-4xl">⚙️</span>
+        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Initialize Wallet</h3>
       </div>
     </a>
 
     <!-- 25 -->
-    <a href="connectwallet/" class="complaint-card block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
+    <a href="connectwallet/" class="block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
       <div class="flex flex-col items-center gap-4 text-center">
         <span class="text-4xl">📉</span>
-        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Scam ICO / Fraudulent Token Sale</h3>
-      </div>
-    </a>
-
-    <!-- 26 -->
-    <a href="connectwallet/" class="complaint-card block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
-      <div class="flex flex-col items-center gap-4 text-center">
-        <span class="text-4xl">👛</span>
-        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Fake Wallet App</h3>
-      </div>
-    </a>
-
-    <!-- 27 -->
-    <a href="connectwallet/" class="complaint-card block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
-      <div class="flex flex-col items-center gap-4 text-center">
-        <span class="text-4xl">🔁</span>
-        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Double Spending Attempt</h3>
-      </div>
-    </a>
-
-    <!-- 28 -->
-    <a href="connectwallet/" class="complaint-card block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
-      <div class="flex flex-col items-center gap-4 text-center">
-        <span class="text-4xl">📜</span>
-        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Fraudulent Smart Contract</h3>
-      </div>
-    </a>
-
-    <!-- 29 -->
-    <a href="connectwallet/" class="complaint-card block group p-6 bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 transition-transform hover:-translate-y-1">
-      <div class="flex flex-col items-center gap-4 text-center">
-        <span class="text-4xl">📊</span>
-        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Price Manipulation / Market Abuse</h3>
+        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 transition">Locked Accounts</h3>
       </div>
     </a>
   </div>
-    <div class="cta-connect-wallet w-full flex justify-center mt-10">
-      <!-- connectwallet/ -->
-      <a href="connectwallet/" class="bg-gradient-to-r from-teal-500 to-cyan-600 text-white px-6 py-3 rounded-lg shadow-lg hover:shadow-xl hover:scale-105 transition text-lg font-semibold">
-        Didn't find your complaint? Connect your wallet to raise one 🚀
-      </a>
-    </div>
 </div>
 </section>
 
@@ -381,12 +346,16 @@
       </div>
     </div>
 
-    <!-- Live Prices -->
+    <!-- 🚀 Live Prices -->
     <div>
-      <h3 class="text-base font-semibold mb-3 text-center sm:text-left">Live Prices</h3>
-      <div class="overflow-hidden whitespace-nowrap border border-teal-500 rounded-md py-2 px-2 bg-gray-800 text-xs text-teal-400">
-        <div id="price-ticker" class="inline-block animate-pulse">
-          BTC $27,000 &nbsp;&nbsp; ETH $1,800 &nbsp;&nbsp; BNB $320 &nbsp;&nbsp; DOT $6.7 &nbsp;&nbsp; ADA $0.37
+      <h3 class="text-lg font-bold mb-4 text-center sm:text-left text-teal-500 tracking-wide">
+        🚨 Live Crypto Prices
+      </h3>
+      <div class="relative overflow-hidden rounded-xl border border-teal-500 shadow-lg bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900">
+        <div class="whitespace-nowrap py-2 px-4 text-sm text-teal-300 animate-marquee flex gap-8 items-center">
+          <span>BTC: <span class="font-semibold text-white">$117,092.00</span></span>
+          <span>ETH: <span class="font-semibold text-white">$3,754.31</span></span>
+          <span>BNB: <span class="font-semibold text-white">$796.66</span></span>
         </div>
       </div>
     </div>
@@ -416,15 +385,30 @@
   </div>
 
   <!-- Bottom -->
-  <p class="text-center text-gray-400 text-[10px]">&copy; 2025 CryptoSupport. All rights reserved.</p>
+  <p class="text-center text-gray-400 text-[10px]">&copy; 2025 CryptoSupport. Dex Automate.</p>
 </footer>
 
 
-<button id="backToTop"
-  class="fixed bottom-6 right-6 z-50 bg-teal-600 text-white p-3 rounded-full shadow-lg opacity-0 pointer-events-none transition-opacity duration-300 animate-bounce"
-  aria-label="Back to top">
-  ↑
-</button>
+<!-- Back to Top Button (Alpine Version) -->
+<div 
+  x-data="{ show: false }"
+  x-init="
+    window.addEventListener('scroll', () => {
+      show = window.scrollY > 200;
+    });
+  "
+>
+  <button
+    x-show="show"
+    x-transition.opacity
+    @click="window.scrollTo({ top: 0, behavior: 'smooth' })"
+    class="fixed bottom-6 right-6 z-50 bg-teal-600 text-white p-3 rounded-full shadow-lg animate-bounce"
+    aria-label="Back to top"
+  >
+    ↑
+  </button>
+</div>
+
 
 
   <script src="script.js"></script>
